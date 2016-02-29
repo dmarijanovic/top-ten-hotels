@@ -76,41 +76,40 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:stretchColumns="*">
+          >
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="130dp"
+
                 android:layout_margin="10dp" >
 
                 <ImageView
                     android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:id="@+id/teaser_image_1"
                     android:src="@android:drawable/ic_menu_gallery"
-                    android:scaleType="centerCrop"
-                    android:layout_marginRight="10dp"/>
+                    android:scaleType="centerCrop" />
 
                 <ImageView
                     android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:id="@+id/teaser_image_2"
                     android:src="@android:drawable/ic_menu_gallery"
                     android:scaleType="centerCrop"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"/>
 
                 <ImageView
                     android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:id="@+id/teaser_image_3"
                     android:src="@android:drawable/ic_menu_gallery"
-                    android:scaleType="centerCrop"
-                    android:layout_marginRight="10dp"/>
+                    android:scaleType="centerCrop" />
             </TableRow>
         </TableLayout>
 

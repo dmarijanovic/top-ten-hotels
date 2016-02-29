@@ -23,7 +23,7 @@ public class MainActivity extends BaseActivity {
 
     private static final String[] PLACE_IDS = {
             "ChIJ-4PswvnWZUcREtjgku_DPV4", // Esplanade Zagreb Hotel
-            "ChIJTXkijPjWZUcR5uAVcm23ukU", // HOTEL ASTORIA
+            "ChIJByx7Skd2ZkcREXobqNdnON0", // HOTEL ASTORIA
             "ChIJ9VHZHwDXZUcRE_Rjjwcuyjk", // Hotel Jadran Zagreb
             "ChIJN-YgP_nWZUcRcKsl33CgitI", // Palace hotel Zagreb
             "ChIJQT3IU4nVZUcREAPjpI8mx-U", // Hotel Aristos Zagreb

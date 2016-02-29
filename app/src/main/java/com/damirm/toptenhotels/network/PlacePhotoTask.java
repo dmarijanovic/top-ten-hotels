@@ -71,7 +71,7 @@ public class PlacePhotoTask extends AsyncTask<String, Void, Bitmap> {
         if (imageView != null) {
             PlacePhotoTask placePhotoTask = PhotoUtil.getPlacePhotoTask(imageView);
 
-            if (placePhotoTask.equals(this)) {
+            if (placePhotoTask != null && placePhotoTask.equals(this)) {
                 imageView.setImageBitmap(bitmap);
                 App.get().getBitmapCache()
                         .addBitmapToMemoryCache(PhotoUtil.getCacheKey(imageView, placeId, position, scaled), bitmap);

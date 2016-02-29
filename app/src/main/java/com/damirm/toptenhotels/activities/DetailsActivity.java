@@ -56,7 +56,7 @@ public class DetailsActivity extends BaseActivity {
         description.setText(placeData.description);
         ratingBar.setRating(placeData.rating * 10);
 
-        PhotoUtil.downloadOrGetFromCache(apiClient, coverImageView, placeData.placeId, 0, true);
+        PhotoUtil.downloadOrGetFromCache(apiClient, coverImageView, placeData.placeId, 0, false);
 
         PhotoUtil.downloadOrGetFromCache(apiClient, teaserImageView1, placeData.placeId, 1, true);
 
