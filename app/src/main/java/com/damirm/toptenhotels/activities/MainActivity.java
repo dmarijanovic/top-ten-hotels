@@ -57,6 +57,9 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    /**
+     * Fetch list of places from google api and push it to list adapter
+     */
     private void getPlaces() {
         Places.GeoDataApi.getPlaceById(apiClient, PLACE_IDS)
                 .setResultCallback(new ResultCallback<PlaceBuffer>() {

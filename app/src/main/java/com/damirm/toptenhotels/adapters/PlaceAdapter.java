@@ -80,6 +80,7 @@ public class PlaceAdapter extends BaseAdapter {
             this.address = (TextView) view.findViewById(R.id.address);
             this.city = (TextView) view.findViewById(R.id.city);
             this.imageView = (ImageView) view.findViewById(R.id.imageView);
+
             view.setTag(this);
         }
     }

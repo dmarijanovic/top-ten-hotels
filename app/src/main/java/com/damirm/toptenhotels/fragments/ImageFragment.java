@@ -12,6 +12,9 @@ import com.damirm.toptenhotels.R;
 import com.damirm.toptenhotels.utils.ZoomableImageView;
 
 public class ImageFragment extends Fragment {
+    
+
+    private static final String TAG = ImageFragment.class.getSimpleName();
 
     private static final String KEY_IMAGE_INDEX = "image_index";
 
@@ -66,7 +69,7 @@ public class ImageFragment extends Fragment {
             galleryImage = (GalleryImage) getActivity();
             galleryImage.requestImageByPosition(zoomableImageView, imagePosition);
         } catch (Exception e) {
-            Log.e("ImageFragment", "Error attaching interface", e);
+            Log.e(TAG, "Error attaching interface", e);
         }
     }
 }

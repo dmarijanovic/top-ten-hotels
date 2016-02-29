@@ -6,6 +6,7 @@
 
     <string name="error_connecting_to_server">Error connecting to server</string>
     <string name="no_network">This application requires internet connection</string>
+    <string name="general_error">There was error</string>
 
     <item type="id" name="KEY_TOOLBAR_HIDDEN"/>
 

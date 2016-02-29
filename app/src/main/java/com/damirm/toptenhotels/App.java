@@ -2,23 +2,23 @@ package com.damirm.toptenhotels;
 
 import android.app.Application;
 
-import com.damirm.toptenhotels.utils.Cache;
+import com.damirm.toptenhotels.utils.BitmapCache;
 
 public class App extends Application {
 
     public static App instance;
 
-    private Cache cache;
+    private BitmapCache bitmapCache;
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
-        cache = new Cache();
+        bitmapCache = new BitmapCache();
     }
 
-    public Cache getCache() {
-        return cache;
+    public BitmapCache getBitmapCache() {
+        return bitmapCache;
     }
 
     public static App get() {

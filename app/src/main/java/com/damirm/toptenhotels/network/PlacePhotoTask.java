@@ -45,7 +45,7 @@ public class PlacePhotoTask extends AsyncTask<String, Void, Bitmap> {
             if (result.getStatus().isSuccess()) {
                 PlacePhotoMetadataBuffer photoMetadata = result.getPhotoMetadata();
 
-                App.get().getCache().setImageCount(placeId, photoMetadata.getCount());
+                App.get().getBitmapCache().setImageCount(placeId, photoMetadata.getCount());
                 if (photoMetadata.getCount() > position && !isCancelled()) {
                     PlacePhotoMetadata photo = photoMetadata.get(position);
 
@@ -73,7 +73,7 @@ public class PlacePhotoTask extends AsyncTask<String, Void, Bitmap> {
 
             if (placePhotoTask.equals(this)) {
                 imageView.setImageBitmap(bitmap);
-                App.get().getCache()
+                App.get().getBitmapCache()
                         .addBitmapToMemoryCache(PhotoUtil.getCacheKey(imageView, placeId, position, scaled), bitmap);
             }
         }

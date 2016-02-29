@@ -10,9 +10,13 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class PhotoUtil {
 
+    /**
+     * Method will set bitmap image to image view. If bitmap is not present in cache it will
+     * execute async request to download image from network
+     */
     public static void downloadOrGetFromCache(GoogleApiClient apiClient, ImageView imageView,
                                               String placeId, int imagePosition, boolean scaled) {
-        Bitmap bitmap = App.get().getCache().getBitmapFromMemCache(getCacheKey(imageView, placeId, imagePosition, scaled));
+        Bitmap bitmap = App.get().getBitmapCache().getBitmapFromMemCache(getCacheKey(imageView, placeId, imagePosition, scaled));
 
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap);
@@ -33,7 +37,6 @@ public class PhotoUtil {
                     !(placePhotoTask.placeId.equals(placeId) && placePhotoTask.position == imagePosition)) {
                 placePhotoTask.cancel(true);
             } else {
-                // The same URL is already being downloaded.
                 return false;
             }
         }

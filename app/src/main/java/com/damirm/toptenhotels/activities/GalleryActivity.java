@@ -49,7 +49,7 @@ public class GalleryActivity extends BaseActivity implements ImageFragment.Galle
         statusContainer = (LinearLayout) findViewById(R.id.statusContainer);
         status = (TextView) findViewById(R.id.status);
 
-        imageCount = App.get().getCache().getImageCount(placeId);
+        imageCount = App.get().getBitmapCache().getImageCount(placeId);
         adapter = new ImagePageAdapter(getSupportFragmentManager(), imageCount);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -74,6 +74,8 @@ public class GalleryActivity extends BaseActivity implements ImageFragment.Galle
     @Override
     protected void onStart() {
         super.onStart();
+
+        // hide toolbar when activity starts
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

@@ -6,12 +6,12 @@ import android.util.LruCache;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cache {
+public class BitmapCache {
 
     private LruCache<String, Bitmap> bitmapMemoryCache;
     private Map<String, Integer> placeImageCount;
 
-    public Cache() {
+    public BitmapCache() {
         final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
         final int cacheSize = maxMemory / 8;
 
