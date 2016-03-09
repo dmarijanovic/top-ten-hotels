@@ -15,7 +15,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.places.Places;
 
 public class BaseActivity extends AppCompatActivity implements
-        GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks {
 
     private static final int GOOGLE_API_CLIENT_ID = 0;
 
@@ -30,6 +30,7 @@ public class BaseActivity extends AppCompatActivity implements
                 .addApi(Places.GEO_DATA_API)
                 .addApi(Places.PLACE_DETECTION_API)
                 .enableAutoManage(this, GOOGLE_API_CLIENT_ID, this)
+                .addConnectionCallbacks(this)
                 .build();
     }
 
@@ -62,5 +63,15 @@ public class BaseActivity extends AppCompatActivity implements
         ConnectivityManager connectivityManager = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+        // override in activity to receive onConnect event
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        // override in activity to receive onConnectionSuspended event
     }
 }

@@ -7,27 +7,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.damirm.toptenhotels.R;
+import com.damirm.toptenhotels.utils.PhotoUtil;
 import com.damirm.toptenhotels.utils.ZoomableImageView;
 
-public class ImageFragment extends Fragment {
-    
+public class ImageFragment extends Fragment implements PhotoUtil.PhotoCallback {
 
     private static final String TAG = ImageFragment.class.getSimpleName();
 
     private static final String KEY_IMAGE_INDEX = "image_index";
 
-    ZoomableImageView zoomableImageView;
+    private ZoomableImageView zoomableImageView;
+    private ProgressBar progressBar;
     private GalleryImage galleryImage;
 
     private int imagePosition;
 
     public interface GalleryImage {
-        void requestImageByPosition(ImageView imageView, int position);
+
+        void requestImageByPosition(ImageView imageView, int position, PhotoUtil.PhotoCallback photoCallback);
         void onImageClick();
     }
-
     public static ImageFragment newInstance(int imageIndex) {
         Bundle args = new Bundle();
         args.putInt(KEY_IMAGE_INDEX, imageIndex);
@@ -52,6 +54,7 @@ public class ImageFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        progressBar = (ProgressBar) getView().findViewById(R.id.progressBar);
         zoomableImageView = (ZoomableImageView) getView().findViewById(R.id.zoomableImageView);
         zoomableImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +62,8 @@ public class ImageFragment extends Fragment {
                 galleryImage.onImageClick();
             }
         });
+
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -67,9 +72,14 @@ public class ImageFragment extends Fragment {
 
         try {
             galleryImage = (GalleryImage) getActivity();
-            galleryImage.requestImageByPosition(zoomableImageView, imagePosition);
+            galleryImage.requestImageByPosition(zoomableImageView, imagePosition, this);
         } catch (Exception e) {
             Log.e(TAG, "Error attaching interface", e);
         }
+    }
+
+    @Override
+    public void onPhotoLoaded() {
+        progressBar.setVisibility(View.GONE);
     }
 }

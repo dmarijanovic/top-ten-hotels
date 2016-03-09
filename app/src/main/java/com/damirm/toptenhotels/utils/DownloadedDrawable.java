@@ -16,7 +16,7 @@ public class DownloadedDrawable extends ColorDrawable {
         placePhotoTaskReference = new WeakReference<>(placePhotoTask);
     }
 
-    public PlacePhotoTask getPlacePhotoTaks() {
+    public PlacePhotoTask getPlacePhotoTask() {
         return placePhotoTaskReference.get();
     }
 }

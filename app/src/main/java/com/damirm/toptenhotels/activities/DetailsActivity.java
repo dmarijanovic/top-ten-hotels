@@ -28,9 +28,7 @@ public class DetailsActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            placeData = (PlaceData) extras.get(PlaceData.class.getName());
-        }
+        placeData = (PlaceData) extras.get(PlaceData.class.getName());
 
         setTitle(placeData.name);
 
@@ -55,14 +53,16 @@ public class DetailsActivity extends BaseActivity {
         city.setText(placeData.getCityWithPb());
         description.setText(placeData.description);
         ratingBar.setRating(placeData.rating * 10);
+    }
 
-        PhotoUtil.downloadOrGetFromCache(apiClient, coverImageView, placeData.placeId, 0, false);
+    @Override
+    public void onConnected(Bundle bundle) {
+        super.onConnected(bundle);
 
-        PhotoUtil.downloadOrGetFromCache(apiClient, teaserImageView1, placeData.placeId, 1, true);
-
-        PhotoUtil.downloadOrGetFromCache(apiClient, teaserImageView2, placeData.placeId, 2, true);
-
-        PhotoUtil.downloadOrGetFromCache(apiClient, teaserImageView3, placeData.placeId, 3, true);
+        PhotoUtil.downloadOrGetFromCache(apiClient, coverImageView, placeData.placeId, 0, true, true);
+        PhotoUtil.downloadOrGetFromCache(apiClient, teaserImageView1, placeData.placeId, 1, true, true);
+        PhotoUtil.downloadOrGetFromCache(apiClient, teaserImageView2, placeData.placeId, 2, true, true);
+        PhotoUtil.downloadOrGetFromCache(apiClient, teaserImageView3, placeData.placeId, 3, true, true);
     }
 
     private View.OnClickListener onTeaserImageListener(final int position) {

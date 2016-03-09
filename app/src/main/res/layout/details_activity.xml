@@ -15,7 +15,6 @@
             android:layout_height="180dp"
             android:id="@+id/cover_image"
             android:layout_alignParentTop="true"
-            android:src="@android:drawable/ic_menu_gallery"
             android:scaleType="centerCrop" />
 
         <LinearLayout
@@ -90,7 +89,6 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:id="@+id/teaser_image_1"
-                    android:src="@android:drawable/ic_menu_gallery"
                     android:scaleType="centerCrop" />
 
                 <ImageView
@@ -98,7 +96,6 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:id="@+id/teaser_image_2"
-                    android:src="@android:drawable/ic_menu_gallery"
                     android:scaleType="centerCrop"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"/>
@@ -108,7 +105,6 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:id="@+id/teaser_image_3"
-                    android:src="@android:drawable/ic_menu_gallery"
                     android:scaleType="centerCrop" />
             </TableRow>
         </TableLayout>

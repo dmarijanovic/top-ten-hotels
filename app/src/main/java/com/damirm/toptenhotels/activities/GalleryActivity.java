@@ -51,7 +51,6 @@ public class GalleryActivity extends BaseActivity implements ImageFragment.Galle
 
         imageCount = App.get().getBitmapCache().getImageCount(placeId);
         adapter = new ImagePageAdapter(getSupportFragmentManager(), imageCount);
-        viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -66,9 +65,6 @@ public class GalleryActivity extends BaseActivity implements ImageFragment.Galle
             public void onPageScrollStateChanged(int state) {
             }
         });
-
-        viewPager.setCurrentItem(currentImagePosition);
-        setStatus(currentImagePosition);
     }
 
     @Override
@@ -91,8 +87,17 @@ public class GalleryActivity extends BaseActivity implements ImageFragment.Galle
     }
 
     @Override
-    public void requestImageByPosition(ImageView imageView, int position) {
-        PhotoUtil.downloadOrGetFromCache(apiClient, imageView, placeId, position, false);
+    public void onConnected(Bundle bundle) {
+        super.onConnected(bundle);
+
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(currentImagePosition);
+        setStatus(currentImagePosition);
+    }
+
+    @Override
+    public void requestImageByPosition(ImageView imageView, int position, PhotoUtil.PhotoCallback photoCallback) {
+        PhotoUtil.downloadOrGetFromCache(apiClient, imageView, placeId, position, false, true, photoCallback);
     }
 
     @Override

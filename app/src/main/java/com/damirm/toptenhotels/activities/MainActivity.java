@@ -1,6 +1,8 @@
 package com.damirm.toptenhotels.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,6 +12,7 @@ import android.widget.Toast;
 import com.damirm.toptenhotels.adapters.PlaceAdapter;
 import com.damirm.toptenhotels.R;
 import com.damirm.toptenhotels.models.PlaceData;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
@@ -36,6 +39,7 @@ public class MainActivity extends BaseActivity {
 
     private ListView listView;
     private PlaceAdapter placeAdapter;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,14 @@ public class MainActivity extends BaseActivity {
         listView.setAdapter(placeAdapter);
         listView.setOnItemClickListener(onPlaceClickListener);
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage(getText(R.string.loading_message));
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         if (isNetworkAvailable()) {
             getPlaces();
         } else {
@@ -61,6 +73,7 @@ public class MainActivity extends BaseActivity {
      * Fetch list of places from google api and push it to list adapter
      */
     private void getPlaces() {
+        progressDialog.show();
         Places.GeoDataApi.getPlaceById(apiClient, PLACE_IDS)
                 .setResultCallback(new ResultCallback<PlaceBuffer>() {
                     @Override
@@ -76,8 +89,18 @@ public class MainActivity extends BaseActivity {
                             placeAdapter.setPlaces(placesData);
                         }
                         places.release();
+                        progressDialog.dismiss();
                     }
                 });
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        super.onConnectionFailed(connectionResult);
+
+        if (progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
     }
 
     private AdapterView.OnItemClickListener onPlaceClickListener = new AdapterView.OnItemClickListener() {
